@@ -1,3 +1,7 @@
+# This project is a Graph QL practice project 🔥🔥🔥
+
+
+### Project structure
 ```
 Graphql
 ├─ data
