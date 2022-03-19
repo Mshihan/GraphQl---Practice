@@ -7,6 +7,7 @@ const typeDefs = require("./models/graphqlSchema");
 const { Query } = require("./resolvers/query");
 const { Product } = require("./resolvers/product");
 const { Category } = require("./resolvers/category");
+const { categories, products, reviews } = require("./data/db");
 
 async function startApolloServer(typeDefs, resolvers) {
   const app = express();
@@ -17,6 +18,7 @@ async function startApolloServer(typeDefs, resolvers) {
     typeDefs,
     resolvers,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    context: { categories, products, reviews },
   });
 
   await server.start();

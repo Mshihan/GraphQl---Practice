@@ -1,19 +1,23 @@
-const { categories, products } = require("../data/db");
-
 exports.Query = {
   hello: (parent, args, context) => {
     return "This is a greating message";
   },
-  products: (parent, args, context) => {
+  products: (parent, args, { products }) => {
     return products;
   },
-  product: (parent, args, context) => {
-    return products.find((product) => product.id === args.id);
+  product: (parent, { id }, { products }) => {
+    return products.find((product) => product.id === id);
   },
-  categories: (parent, args, context) => {
+  categories: (parent, args, { categories }) => {
     return categories;
   },
-  category: (parent, args, context) => {
-    return categories.find((category) => category.id === args.id);
+  category: (parent, { id }, { categories }) => {
+    return categories.find((category) => category.id === id);
+  },
+  reviews: (parent, args, { reviews }) => {
+    return reviews;
+  },
+  review: (parent, { id }, { reviews }) => {
+    return reviews.find((review) => review.id === id);
   },
 };
