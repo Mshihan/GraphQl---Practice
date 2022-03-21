@@ -7,6 +7,7 @@ const typeDefs = require("./models/graphqlSchema");
 const { Query } = require("./resolvers/query");
 const { Product } = require("./resolvers/product");
 const { Category } = require("./resolvers/category");
+const { Mutation } = require("./resolvers/mutation");
 const { categories, products, reviews } = require("./data/db");
 
 async function startApolloServer(typeDefs, resolvers) {
@@ -34,4 +35,5 @@ startApolloServer(typeDefs, {
   Query,
   Product,
   Category,
+  Mutation,
 });
