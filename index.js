@@ -8,7 +8,7 @@ const { Query } = require("./resolvers/query");
 const { Product } = require("./resolvers/product");
 const { Category } = require("./resolvers/category");
 const { Mutation } = require("./resolvers/mutation");
-const { categories, products, reviews } = require("./data/db");
+const db = require("./data/db");
 
 async function startApolloServer(typeDefs, resolvers) {
   const app = express();
@@ -19,7 +19,7 @@ async function startApolloServer(typeDefs, resolvers) {
     typeDefs,
     resolvers,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
-    context: { categories, products, reviews },
+    context: db,
   });
 
   await server.start();

@@ -3,7 +3,7 @@ exports.Query = {
     return "This is a greating message";
   },
   products: (parent, { filter }, { products, reviews }) => {
-    let filteredProducts = products;
+    let filteredProducts = db.products;
 
     if (filter) {
       const { onSale, avgRating } = filter;
@@ -17,7 +17,7 @@ exports.Query = {
         filteredProducts = filteredProducts.filter((product) => {
           let sumRating = 0;
           let numOfReviews = 0;
-          reviews.forEach((review) => {
+          db.reviews.forEach((review) => {
             if (review.productId === product.id) {
               sumRating += review.rating;
               numOfReviews++;
@@ -31,19 +31,19 @@ exports.Query = {
 
     return filteredProducts;
   },
-  product: (parent, { id }, { products }) => {
-    return products.find((product) => product.id === id);
+  product: (parent, { id }, { db }) => {
+    return db.products.find((product) => product.id === id);
   },
-  categories: (parent, args, { categories }) => {
-    return categories;
+  categories: (parent, args, { db }) => {
+    return db.categories;
   },
-  category: (parent, { id }, { categories }) => {
-    return categories.find((category) => category.id === id);
+  category: (parent, { id }, { db }) => {
+    return db.categories.find((category) => category.id === id);
   },
-  reviews: (parent, args, { reviews }) => {
-    return reviews;
+  reviews: (parent, args, { db }) => {
+    return db.reviews;
   },
-  review: (parent, { id }, { reviews }) => {
-    return reviews.find((review) => review.id === id);
+  review: (parent, { id }, { db }) => {
+    return db.reviews.find((review) => review.id === id);
   },
 };
