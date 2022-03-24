@@ -2,7 +2,7 @@ exports.Query = {
   hello: (parent, args, context) => {
     return "This is a greating message";
   },
-  products: (parent, { filter }, { products, reviews }) => {
+  products: (parent, { filter }, { db }) => {
     let filteredProducts = db.products;
 
     if (filter) {
